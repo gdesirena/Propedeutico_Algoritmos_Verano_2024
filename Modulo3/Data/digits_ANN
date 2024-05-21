@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed May  6 09:27:56 2020
+
+@author: deloga
+"""
+
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import cross_val_score
+from sklearn.preprocessing import MinMaxScaler
+from sklearn import datasets
+from sklearn.neural_network import MLPClassifier
+import numpy as np
+import matplotlib.pyplot as plt
+
+digits = datasets.load_digits()
+
+plt.gray()
+plt.matshow(digits.images[5])
+plt.show()
+
+fig = plt.figure(figsize = (6,6))
+fig.subplots_adjust(left=0, right =1, bottom=0, top=1, hspace= 0.05, wspace=0.05)
+
+for i in range(64):
+    ax= fig.add_subplot(8, 8, i+1, xticks=[], yticks=[])
+    ax.imshow(digits.images[i], cmap = plt.cm.binary, interpolation ='nearest')
+    # la etiqueta
+    ax.text(0,7, str(digits.target[i]))
+    
+X, y = digits.data, digits.target
+
+X_tr, X_t, y_tr, y_t = train_test_split(X, y, test_size=0.2, random_state=0)
+
+scaling = MinMaxScaler(feature_range=(-1,1)).fit(X_tr)
+X_tr = scaling.transform(X_tr)
+X_t = scaling.transform(X_t)
+
+nn = MLPClassifier(hidden_layer_sizes = (512,), activation = 'relu', solver= 'adam',
+                   shuffle = True, tol = 1e-4, random_state =1)
+
+cv = cross_val_score(nn, X_tr, y_tr, cv=10)
+test_score = nn.fit(X_tr, y_tr).score(X_t, y_t)
+
+print('CV accuracy score: %0.3f' % np.mean(cv))
+print('Test accuracy score: %0.3f' % (test_score))
+
+
+
+
+
+
+
+
+
+
+
