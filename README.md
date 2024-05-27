@@ -2,7 +2,7 @@
 
 # ¡HOLA A TODOS!
 
-En este repositorio se encontrarás las notas para el curso propedéutico de programación para la Maestría en Ciencia de Datos en el año 2023. Material adicional será proporcionado durante clases.
+En este repositorio se encontrarás las notas para el curso propedéutico de programación para la Maestría en Ciencia de Datos en el año 2024. Material adicional será proporcionado durante clases.
 
 `Introducción.` **Conociendo python**
 > En esta semana veremos las habilidades básicas necesarias de Python para trabajar en ciencia de datos. Al final de esta semana habrás aprendido la sintaxis básica de Python, cómo usar funciones y cómo definir nuestras propias funciones, los distintos tipos de variables básicas en Python, estructuras condicionales e iterativas.
